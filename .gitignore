@@ -4,4 +4,6 @@
 *~
 *.kate-swp
 *.kdev4
-./build/
+build
+install
+log
