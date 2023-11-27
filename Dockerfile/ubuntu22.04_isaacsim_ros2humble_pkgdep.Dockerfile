@@ -44,7 +44,20 @@ RUN apt update && \
     ros-humble-ros2-control ros-humble-ros2-controllers ros-humble-kinematics-interface-kdl \
     ros-humble-ur-msgs ros-humble-ur-client-library \
     ros-humble-backward-ros ros-humble-ackermann-msgs ros-humble-control-toolbox ros-humble-generate-parameter-library ros-humble-gazebo-dev \
-    ros-humble-gazebo-ros ros-humble-kinematics-interface ros-humble-kinematics-interface-kdl
+    ros-humble-gazebo-ros ros-humble-kinematics-interface ros-humble-kinematics-interface-kdl \
+    python3-rosdep
+
+RUN rosdep init && rosdep update
+RUN apt update && apt -y -q dist-upgrade
+RUN apt update && \
+    apt-get upgrade -y -qq --no-install-recommends && \
+    apt install -q -y \
+    python3-colcon-common-extensions python3-colcon-mixin python3-vcstool
+
+RUN colcon mixin add default https://raw.githubusercontent.com/colcon/colcon-mixin-repository/master/index.yaml
+RUN colcon mixin update default
+
+
 
 RUN echo 'export ROS_PACKAGE_PATH=/opt/ros/humble/share' >> ~/.bashrc
 RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
