@@ -45,7 +45,7 @@ RUN apt update && \
     ros-humble-ur-msgs ros-humble-ur-client-library \
     ros-humble-backward-ros ros-humble-ackermann-msgs ros-humble-control-toolbox ros-humble-generate-parameter-library ros-humble-gazebo-dev \
     ros-humble-gazebo-ros ros-humble-kinematics-interface ros-humble-kinematics-interface-kdl \
-    python3-rosdep
+    python3-rosdep moreutils
 
 RUN rosdep init && rosdep update
 RUN apt update && apt -y -q dist-upgrade
